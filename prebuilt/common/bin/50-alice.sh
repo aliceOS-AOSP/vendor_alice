@@ -2,8 +2,8 @@
 #
 # ADDOND_VERSION=2
 #
-# /system/addon.d/50-xdroid.sh
-# During a xdroid upgrade, this script backs up /system/etc/hosts,
+# /system/addon.d/50-alice.sh
+# During a alice upgrade, this script backs up /system/etc/hosts,
 # /system is formatted and reinstalled, then the file is restored.
 #
 

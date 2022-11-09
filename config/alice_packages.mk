@@ -1,8 +1,3 @@
-#
-# Copyright (C) The ConquerOS Project
-# Copyright (C) a xdroid, xyzprjkt
-#
-
 # Telephony packages
 PRODUCT_PACKAGES += \
     Stk

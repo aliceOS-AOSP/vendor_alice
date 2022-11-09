@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# xdroid A/B OTA Postinstall Script
+# alice A/B OTA Postinstall Script
 #
 
 /postinstall/system/bin/backuptool_ab.sh backup

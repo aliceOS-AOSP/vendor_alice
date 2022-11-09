@@ -15,5 +15,5 @@
 -->
 
 <permissions>
-    <feature name="vendor.xdroid.biometrics.fingerprint.inscreen" />
+    <feature name="vendor.alice.biometrics.fingerprint.inscreen" />
 </permissions>

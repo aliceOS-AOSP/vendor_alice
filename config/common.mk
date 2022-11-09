@@ -1,42 +1,25 @@
-#
-# Copyright (C) 2020 The ConquerOS Project
-# Copyright (C) 2021 a xdroid Prjkt
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# version
+include vendor/alice/config/alice_version.mk
 
-# xd. version
-include vendor/xdroid/config/xd_version.mk
+# packages
+include vendor/alice/config/alice_packages.mk
 
-# xd. packages
-include vendor/xdroid/config/xd_packages.mk
+# props
+include vendor/alice/config/alice_props.mk
 
-# xd. props
-include vendor/xdroid/config/xd_props.mk
-
-# xd. permissions
+# permissions
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/config/permissions/xd_permissions.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/xd_permissions_system.xml \
-    vendor/xdroid/config/permissions/xd_permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/xd_permissions_system-ext.xml \
-    vendor/xdroid/config/permissions/xd_permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/xd_permissions_product.xml
+    vendor/alice/config/permissions/alice_permissions.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/alice_permissions_system.xml \
+    vendor/alice/config/permissions/alice_permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/alice_permissions_system-ext.xml \
+    vendor/alice/config/permissions/alice_permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/alice_permissions_product.xml
 
-# xd. signed
-include vendor/xdroid/config/xd_signed.mk
+# signed
+include vendor/alice/config/alice_signed.mk
 
-# xd. xdroidUI
-include vendor/xdroidui/config.mk
+# custom UI
+include vendor/aliceui/config.mk
 
-# xd. GMS
+# GMS
 $(call inherit-product, vendor/gms/gms_mini.mk)
 TARGET_SUPPORTS_GOOGLE_RECORDER ?= false
 TARGET_INCLUDE_STOCK_ARCORE ?= false
@@ -54,20 +37,20 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/xdroid/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/xdroid/prebuilt/common/bin/50-xdroid.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xdroid.sh
+    vendor/alice/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/alice/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/alice/prebuilt/common/bin/50-alice.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-alice.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/xdroid/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/xdroid/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/alice/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/alice/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/alice/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
+    vendor/alice/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
 
 # Face Unlock
 # TARGET_FACE_UNLOCK_SUPPORTED ?= true
@@ -82,7 +65,7 @@ PRODUCT_COPY_FILES += \
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
+    vendor/alice/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -103,12 +86,12 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xdroid/overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/xdroid/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/alice/overlay
+DEVICE_PACKAGE_OVERLAYS += vendor/alice/overlay/common
 
 # Sensitive Phone Numbers list
 PRODUCT_COPY_FILES += \
-    vendor/xdroid/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
+    vendor/alice/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
 
 # Use default filter for problematic apps.
 PRODUCT_DEXPREOPT_QUICKEN_APPS += \
@@ -118,12 +101,12 @@ PRODUCT_DEXPREOPT_QUICKEN_APPS += \
 DONT_DEXPREOPT_PREBUILTS := true
 
 # Include Lineage LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/xdroid/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/alice/overlay/dictionaries
 
 # Disable EAP Proxy because it depends on proprietary headers
 # and breaks WPA Supplicant compilation.
 DISABLE_EAP_PROXY := true
 
 # init.rc
-$(foreach f,$(wildcard vendor/xdroid/prebuilt/etc/init/*.rc),\
+$(foreach f,$(wildcard vendor/alice/prebuilt/etc/init/*.rc),\
     $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))

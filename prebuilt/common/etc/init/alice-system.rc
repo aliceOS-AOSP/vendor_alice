@@ -1,4 +1,4 @@
-# xdroid core functionality
+# alice core functionality
 on init
     export TERMINFO /system/etc/terminfo
 

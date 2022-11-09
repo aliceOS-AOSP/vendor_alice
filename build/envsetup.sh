@@ -1,4 +1,4 @@
-function __print_xdroid_functions_help() {
+function __print_alice_functions_help() {
 cat <<EOF
 Additional functions:
 - mka:             Builds using SCHED_BATCH on all processors.

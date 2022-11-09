@@ -1,8 +1,3 @@
-#
-# Copyright (C) 2020 The ConquerOS Project
-#				2021 a xdroid Prjkt
-#
-
 # A/B backuptool
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
